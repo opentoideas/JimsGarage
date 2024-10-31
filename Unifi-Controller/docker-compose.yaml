@@ -29,21 +29,21 @@ services:
       - 8880:8880 #optional
       - 6789:6789 #optional
       - 5514:5514/udp #optional
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.unifi.entrypoints=http"
-      - "traefik.http.routers.unifi.rule=Host(`unifi.jimsgarage.co.uk`)"
-      - "traefik.http.middlewares.unifi-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.unifi.middlewares=unifi-https-redirect"
-      - "traefik.http.routers.unifi-secure.entrypoints=https"
-      - "traefik.http.routers.unifi-secure.rule=Host(`unifi.jimsgarage.co.uk`)"
-      - "traefik.http.routers.unifi-secure.tls=true"
-      - "traefik.http.routers.unifi-secure.service=unifi"
-      - "traefik.http.services.unifi.loadbalancer.server.port=8443"
-      - "traefik.http.services.unifi.loadbalancer.server.scheme=https"
-      - "traefik.docker.network=proxy"
+    #labels:
+    #  - "traefik.enable=true"
+    #  - "traefik.http.routers.unifi.entrypoints=http"
+    #  - "traefik.http.routers.unifi.rule=Host(`unifi.jimsgarage.co.uk`)"
+    #  - "traefik.http.middlewares.unifi-https-redirect.redirectscheme.scheme=https"
+    #  - "traefik.http.routers.unifi.middlewares=unifi-https-redirect"
+    #  - "traefik.http.routers.unifi-secure.entrypoints=https"
+    #  - "traefik.http.routers.unifi-secure.rule=Host(`unifi.jimsgarage.co.uk`)"
+    #  - "traefik.http.routers.unifi-secure.tls=true"
+    #  - "traefik.http.routers.unifi-secure.service=unifi"
+    #  - "traefik.http.services.unifi.loadbalancer.server.port=8443"
+    #  - "traefik.http.services.unifi.loadbalancer.server.scheme=https"
+    #  - "traefik.docker.network=proxy"
     networks:
-      proxy:
+    #  proxy:
       unifi:
     restart: unless-stopped
   unifi-db:
