@@ -7,7 +7,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Etc/UTC
+      - TZ=Etc/GMT
       - MONGO_USER=unifi
       - MONGO_PASS=5nHgg3G0cH9d
       - MONGO_HOST=unifi-db
