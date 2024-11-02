@@ -57,6 +57,6 @@ services:
     restart: unless-stopped
 
 networks:
-  proxy:
-    external: true
+#  proxy:
+#    external: true
   unifi:
