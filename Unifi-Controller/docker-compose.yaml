@@ -60,4 +60,3 @@ networks:
 #  proxy:
 #    external: true
   unifi:
-  ip: 10.0.0.99
