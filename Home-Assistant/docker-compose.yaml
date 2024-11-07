@@ -9,26 +9,26 @@ services:
     environment:
       - TZ=Europe/London
     restart: unless-stopped
-    #ports:
-    #  - 8123:8123
+    ports:
+      - 8123:8123
     networks:
-      proxy:
+#      proxy:
       home-assistant:
     depends_on:
       - homeassistant-db
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.home-assistant.entrypoints=http"
-      - "traefik.http.routers.home-assistant.rule=Host(`home-assistant.jimsgarge.co.uk`)"
-      - "traefik.http.middlewares.home-assistant-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.home-assistant.middlewares=home-assistant-https-redirect"
-      - "traefik.http.routers.home-assistant-secure.entrypoints=https"
-      - "traefik.http.routers.home-assistant-secure.rule=Host(`home-assistant.jimsgarage.co.uk`)"
-      - "traefik.http.routers.home-assistant-secure.tls=true"
-      - "traefik.http.routers.home-assistant-secure.tls.certresolver=cloudflare" # change this to your cert resolver
-      - "traefik.http.routers.home-assistant-secure.service=home-assistant"
-      - "traefik.http.services.home-assistant.loadbalancer.server.port=8123"
-      - "traefik.docker.network=proxy"
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.http.routers.home-assistant.entrypoints=http"
+#      - "traefik.http.routers.home-assistant.rule=Host(`home-assistant.jimsgarge.co.uk`)"
+#      - "traefik.http.middlewares.home-assistant-https-redirect.redirectscheme.scheme=https"
+#      - "traefik.http.routers.home-assistant.middlewares=home-assistant-https-redirect"
+#     - "traefik.http.routers.home-assistant-secure.entrypoints=https"
+#      - "traefik.http.routers.home-assistant-secure.rule=Host(`home-assistant.jimsgarage.co.uk`)"
+#      - "traefik.http.routers.home-assistant-secure.tls=true"
+#      - "traefik.http.routers.home-assistant-secure.tls.certresolver=cloudflare" # change this to your cert resolver
+#      - "traefik.http.routers.home-assistant-secure.service=home-assistant"
+#      - "traefik.http.services.home-assistant.loadbalancer.server.port=8123"
+#      - "traefik.docker.network=proxy"
     security_opt:
       - no-new-privileges:true
 
@@ -53,6 +53,6 @@ services:
       - no-new-privileges:true
 
 networks:
-  proxy:
-    external: true
+#  proxy:
+#    external: true
   home-assistant:
