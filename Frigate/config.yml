@@ -1,8 +1,30 @@
 cameras:
+  front:
+    ffmpeg:
+      inputs:
+        - path: rtsp://10.0.0.81:554/s0
+          roles:
+            - detect
+            - rtmp
+    detect:
+      width: 1920 # <---- update for your camera's resolution
+      height: 1080 # <---- update for your camera's resolution
+      fps: 25
+  kitchen:
+    ffmpeg:
+      inputs:
+        - path: rtsp://10.0.0.82:554/s0
+          roles:
+            - detect
+            - rtmp
+    detect:
+      width: 1920 # <---- update for your camera's resolution
+      height: 1080 # <---- update for your camera's resolution
+      fps: 25
   garden:
     ffmpeg:
       inputs:
-        - path: rtsp://cameraIP:554/s0
+        - path: rtsp://10.0.0.83:554/s0
           roles:
             - detect
             - rtmp
@@ -10,20 +32,9 @@ cameras:
       width: 1920 # <---- update for your camera's resolution
       height: 1080 # <---- update for your camera's resolution
       fps: 25
-  garage:
-    ffmpeg:
-      inputs:
-        - path: rtsp://cameraIP:554/s0
-          roles:
-            - detect
-            - rtmp
-    detect:
-      width: 1920 # <---- update for your camera's resolution
-      height: 1080 # <---- update for your camera's resolution
-      fps: 25
-    motion:
-      mask:
-        - 0,0,1920,0,1920,393,297,241,314,464,0,541
+    #motion:
+    #  mask:
+    #    - 0,0,1920,0,1920,393,297,241,314,464,0,541
 
 # Optional: Database configuration
 database:
@@ -34,9 +45,9 @@ detectors:
   coral1:
     type: edgetpu
     device: pci:0
-  coral2:
-    type: edgetpu
-    device: pci:1
+  #coral2:
+  #  type: edgetpu
+  #  device: pci:1
 
 objects:
   track:
@@ -51,8 +62,8 @@ snapshots:
   bounding_box: true
   retain: 
     default: 30
-mqtt:
-  host: 192.168.200.14
+#mqtt:
+#  host: 192.168.200.14
 
 ffmpeg:
   #hwaccel_args:
