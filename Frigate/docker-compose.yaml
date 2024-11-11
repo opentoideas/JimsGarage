@@ -42,5 +42,5 @@ services:
     #  - "traefik.docker.network=proxy"
 
 networks:
-  #proxy:
-  #  external: true
+  proxy:
+    external: false
