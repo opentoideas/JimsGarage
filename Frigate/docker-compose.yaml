@@ -8,7 +8,7 @@ services:
     devices:
       #- /dev/bus/usb:/dev/bus/usb
       - /dev/apex_0:/dev/apex_0
-      - /dev/apex_1:/dev/apex_1
+      #- /dev/apex_1:/dev/apex_1
       #- /dev/dri/renderD128:/dev/dri/renderD128 # for intel hwaccel, needs to be updated for your hardware
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -28,19 +28,19 @@ services:
       FRIGATE_RTSP_PASSWORD: "password"
     security_opt:
       - no-new-privileges:true
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.frigate.entrypoints=http"
-      - "traefik.http.routers.frigate.rule=Host(`frigate.jimsgarage.co.uk`)"
-      - "traefik.http.middlewares.frigate-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.frigate.middlewares=frigate-https-redirect"
-      - "traefik.http.routers.frigate-secure.entrypoints=https"
-      - "traefik.http.routers.frigate-secure.rule=Host(`frigate.jimsgarage.co.uk`)"
-      - "traefik.http.routers.frigate-secure.tls=true"
-      - "traefik.http.routers.frigate-secure.service=frigate"
-      - "traefik.http.services.frigate.loadbalancer.server.port=5000"
-      - "traefik.docker.network=proxy"
+    #labels:
+    #  - "traefik.enable=true"
+    #  - "traefik.http.routers.frigate.entrypoints=http"
+    #  - "traefik.http.routers.frigate.rule=Host(`frigate.jimsgarage.co.uk`)"
+    #  - "traefik.http.middlewares.frigate-https-redirect.redirectscheme.scheme=https"
+    #  - "traefik.http.routers.frigate.middlewares=frigate-https-redirect"
+    #  - "traefik.http.routers.frigate-secure.entrypoints=https"
+    #  - "traefik.http.routers.frigate-secure.rule=Host(`frigate.jimsgarage.co.uk`)"
+    #  - "traefik.http.routers.frigate-secure.tls=true"
+    #  - "traefik.http.routers.frigate-secure.service=frigate"
+    #  - "traefik.http.services.frigate.loadbalancer.server.port=5000"
+    #  - "traefik.docker.network=proxy"
 
 networks:
-  proxy:
-    external: true
+  #proxy:
+  #  external: true
