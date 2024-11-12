@@ -1,4 +1,6 @@
-1. Download the ISO using the GUI (tested on https://cloud-images.ubuntu.com/)
+1. Download the ISO using the GUI https://cloud-images.ubuntu.com/
+2. tested
+3. https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64-disk-kvm.img
 1. Create the VM via CLI
 ```bash
 qm create 5000 --memory 2048 --core 2 --name ubuntu-cloud --net0 virtio,bridge=vmbr0
