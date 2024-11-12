@@ -1,8 +1,11 @@
 cameras:
   front:
     ffmpeg:
-      inputs:
-        - path: rtsp://admin:D4mn4t10nBugg3r4t10n@10.0.0.81:554/
+     onvif:
+       host: 10.0.0.81
+       port: 8000
+       user: admin
+       password: D4mn4t10nBugg3r4t10n
           roles:
             - detect
             - rtmp
@@ -10,24 +13,30 @@ cameras:
       width: 1920 # <---- update for your camera's resolution
       height: 1080 # <---- update for your camera's resolution
       fps: 25
-#  kitchen:
-#    ffmpeg:
-#      inputs:
-#        - path: rtsp://10.0.0.82:554/s0
-#          roles:
-#            - detect
-#            - rtmp
+  kitchen:
+    ffmpeg:
+      onvif:
+       host: 10.0.0.82
+       port: 8000
+       user: admin
+       password: D4mn4t10nBugg3r4t10n
+          roles:
+            - detect
+            - rtmp
 #    detect:
 #      width: 1920 # <---- update for your camera's resolution
 #      height: 1080 # <---- update for your camera's resolution
 #      fps: 25
-#  garden:
-#    ffmpeg:
-#      inputs:
-#        - path: rtsp://10.0.0.83:554/s0
-#          roles:
-#            - detect
-#            - rtmp
+  garden:
+    ffmpeg:
+      onvif:
+       host: 10.0.0.83
+       port: 8000
+       user: admin
+       password: Bugg3r4t10n
+          roles:
+            - detect
+            - rtmp
 #    detect:
 #      width: 1920 # <---- update for your camera's resolution
 #      height: 1080 # <---- update for your camera's resolution
