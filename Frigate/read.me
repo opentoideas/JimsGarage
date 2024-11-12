@@ -10,8 +10,8 @@ username=[username] passwprd=[pswrd] exit nano
 
 chmod 400 /etc/samba/.smbcreds
 
-mount -t cifs -o rw,vers=3.0,credentials=/etc/samba/.smbcreds,uid=1000,gid=1000 //10.0.0.20/data /mnt/truenas
+mount -t cifs -o rw,vers=3.0,credentials=/etc/samba/.smbcreds,uid=1000,gid=1000 //10.0.0.20/data/surveilance /home/ubuntu/truenas
 
 nano /etc/fstab
 
-add this line to end:- //10.0.0.20 /mnt/truenas cifs vers=3.0,credentials=/etc/samba/.smbcreds,uid=1000,gid=1000,defaults 0 0
+add this line to end:- //10.0.0.20/data/surveilance /home/ubuntu/truenas cifs vers=3.0,credentials=/etc/samba/.smbcreds,uid=1000,gid=1000,defaults 0 0
