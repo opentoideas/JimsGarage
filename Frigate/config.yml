@@ -2,7 +2,7 @@ cameras:
   front:
     ffmpeg:
       inputs:
-        - path: rtsp://10.0.0.81:554/s0
+        - path: rtsp://admin:D4mn4t10nBugg3r4t10n@10.0.0.81:554/
           roles:
             - detect
             - rtmp
@@ -10,27 +10,27 @@ cameras:
       width: 1920 # <---- update for your camera's resolution
       height: 1080 # <---- update for your camera's resolution
       fps: 25
-  kitchen:
-    ffmpeg:
-      inputs:
-        - path: rtsp://10.0.0.82:554/s0
-          roles:
-            - detect
-            - rtmp
-    detect:
-      width: 1920 # <---- update for your camera's resolution
-      height: 1080 # <---- update for your camera's resolution
-      fps: 25
-  garden:
-    ffmpeg:
-      inputs:
-        - path: rtsp://10.0.0.83:554/s0
-          roles:
-            - detect
-            - rtmp
-    detect:
-      width: 1920 # <---- update for your camera's resolution
-      height: 1080 # <---- update for your camera's resolution
+#  kitchen:
+#    ffmpeg:
+#      inputs:
+#        - path: rtsp://10.0.0.82:554/s0
+#          roles:
+#            - detect
+#            - rtmp
+#    detect:
+#      width: 1920 # <---- update for your camera's resolution
+#      height: 1080 # <---- update for your camera's resolution
+#      fps: 25
+#  garden:
+#    ffmpeg:
+#      inputs:
+#        - path: rtsp://10.0.0.83:554/s0
+#          roles:
+#            - detect
+#            - rtmp
+#    detect:
+#      width: 1920 # <---- update for your camera's resolution
+#      height: 1080 # <---- update for your camera's resolution
       fps: 25
     #motion:
     #  mask:
