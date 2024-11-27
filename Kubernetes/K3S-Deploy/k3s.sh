@@ -27,11 +27,11 @@ KVVERSION="v0.6.3"
 k3sVersion="v1.26.10+k3s2"
 
 # Set the IP addresses of the master and work nodes
-master1=192.168.3.21
-master2=192.168.3.22
-master3=192.168.3.23
-worker1=192.168.3.24
-worker2=192.168.3.25
+master1=10.0.0.61
+master2=10.0.0.62
+master3=10.0.0.63
+worker1=10.0.0.64
+worker2=10.0.0.65
 
 # User of remote machines
 user=ubuntu
@@ -40,7 +40,7 @@ user=ubuntu
 interface=eth0
 
 # Set the virtual IP address (VIP)
-vip=192.168.3.50
+vip=10.0.0.60
 
 # Array of master nodes
 masters=($master2 $master3)
@@ -55,13 +55,14 @@ all=($master1 $master2 $master3 $worker1 $worker2)
 allnomaster1=($master2 $master3 $worker1 $worker2)
 
 #Loadbalancer IP range
-lbrange=192.168.3.60-192.168.3.80
+lbrange=10.0.0.66-10.0.0.79
 
 #ssh certificate name variable
 certName=id_rsa
 
 #ssh config file
 config_file=~/.ssh/config
+
 #############################################
 #            DO NOT EDIT BELOW              #
 #############################################
@@ -95,6 +96,7 @@ else
 fi
 
 # Check for SSH config file, create if needed, add/change Strict Host Key Checking (don't use in production!)
+
 if [ ! -f "$config_file" ]; then
   # Create the file and add the line
   echo "StrictHostKeyChecking no" > "$config_file"
