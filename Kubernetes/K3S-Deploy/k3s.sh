@@ -62,7 +62,6 @@ certName=id_rsa
 
 #ssh config file
 config_file=~/.ssh/config
-
 #############################################
 #            DO NOT EDIT BELOW              #
 #############################################
@@ -96,7 +95,6 @@ else
 fi
 
 # Check for SSH config file, create if needed, add/change Strict Host Key Checking (don't use in production!)
-
 if [ ! -f "$config_file" ]; then
   # Create the file and add the line
   echo "StrictHostKeyChecking no" > "$config_file"
