@@ -16,6 +16,8 @@ services:
       - DEFAULT_WORKSPACE=/config/workspace #optional
     volumes:
       - /home/ubuntu/docker/code-server/config:/config
+    ports:
+      - 8443:8443
     networks:
  #     proxy:
  #   labels:
