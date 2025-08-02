@@ -1,92 +1,24 @@
-cameras:
-  front:
-    ffmpeg:
-     onvif:
-       host: 10.0.0.81
-       port: 8000
-       user: admin
-       password: D4mn4t10nBugg3r4t10n
-          roles:
-            - detect
-            - rtmp
-    detect:
-      width: 1920 # <---- update for your camera's resolution
-      height: 1080 # <---- update for your camera's resolution
-      fps: 25
-  kitchen:
-    ffmpeg:
-      onvif:
-       host: 10.0.0.82
-       port: 8000
-       user: admin
-       password: D4mn4t10nBugg3r4t10n
-          roles:
-            - detect
-            - rtmp
-#    detect:
-#      width: 1920 # <---- update for your camera's resolution
-#      height: 1080 # <---- update for your camera's resolution
-#      fps: 25
-  garden:
-    ffmpeg:
-      onvif:
-       host: 10.0.0.83
-       port: 8000
-       user: admin
-       password: Bugg3r4t10n
-          roles:
-            - detect
-            - rtmp
-#    detect:
-#      width: 1920 # <---- update for your camera's resolution
-#      height: 1080 # <---- update for your camera's resolution
-      fps: 25
-    #motion:
-    #  mask:
-    #    - 0,0,1920,0,1920,393,297,241,314,464,0,541
+mqtt:
+  enabled: false
 
-# Optional: Database configuration
-database:
-  # The path to store the SQLite DB (default: shown below)
-  path: /media/frigate/frigate.db
+#ffmpeg:
+#  hwaccel_args: preset-vaapi
 
 detectors:
   coral1:
     type: edgetpu
     device: pci:0
-  #coral2:
-  #  type: edgetpu
-  #  device: pci:1
 
 objects:
   track:
     - person
     - dog
-    - cat
-    - bird
-
-snapshots:
-  enabled: True
-  timestamp: true
-  bounding_box: true
-  retain: 
-    default: 30
-#mqtt:
-#  host: 192.168.200.14
-
-ffmpeg:
-  #hwaccel_args:
-  #  - -hwaccel
-  #  - vaapi
-  #  - -hwaccel_device
-  #  - /dev/dri/renderD128
-  #  - -hwaccel_output_format
-  #  - yuv420p
-  output_args:
-     record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac
 
 record:
-  enabled: True
+  enabled: true
+  retain:
+    days: 28
+    mode: all
   events:
     pre_capture: 5
     post_capture: 5
@@ -95,17 +27,21 @@ record:
       mode: active_objects
     objects:
       - person
-      - bird
-      - cat
-      - dog
+
+snapshots:
+  enabled: false
+  timestamp: true
+  bounding_box: true
+  retain:
+    default: 30
 
 birdseye:
   # Optional: Enable birdseye view (default: shown below)
-  enabled: True
+  enabled: false
   # Optional: Width of the output resolution (default: shown below)
-  width: 1280
+  width: 960
   # Optional: Height of the output resolution (default: shown below)
-  height: 720
+  height: 540
   # Optional: Encoding quality of the mpeg1 feed (default: shown below)
   # 1 is the highest quality, and 31 is the lowest. Lower quality feeds utilize less CPU resources.
   quality: 8
@@ -113,4 +49,82 @@ birdseye:
   #   objects - cameras are included if they have had a tracked object within the last 30 seconds
   #   motion - cameras are included if motion was detected in the last 30 seconds
   #   continuous - all cameras are included always
-  mode: continuous
+  #mode: continuous
+
+cameras:
+  front_of_house: # <------ Name the camera
+    enabled: true
+    ffmpeg:
+   #   hwaccel_args: preset-vaapi
+      inputs:
+        - path: rtsp://admin:D4mn4t10nBugg3r4t10n@10.0.0.81/Preview_01_main #(2560x1440) <----- The stream you want to use for detection
+          roles:
+            - record
+        - path: rtsp://admin:D4mn4t10nBugg3r4t10n@10.0.0.81/Preview_01_sub #(640x360)
+          roles:
+            - detect
+          #  - record
+    detect:
+      enabled: true # <---- disable detection until you have a working camera feed
+      width: 640
+      height: 360
+    onvif:
+      host: 10.0.0.81
+      port: 8000
+      user: admin
+      password: D4mn4t10nBugg3r4t10n
+
+    motion:
+      mask: 0.739,0.883,0.741,0.588,0.039,0.392,0.129,0.68
+  Kitchen: # <------ Name the camera
+    enabled: true
+    ffmpeg:
+  #    hwaccel_args: preset-vaapi
+      inputs:
+        - path: 
+            rtsp://admin:D4mn4t10nBugg3r4t10n@10.0.0.82:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif     # (2560x1440)<----- The stream you want to use for detection
+          roles:
+            - detect
+            - record
+    detect:
+      enabled: true # <---- disable detection until you have a working camera feed
+      width: 1280
+      height: 720
+    onvif:
+      host: 10.0.0.82
+      port: 80
+      user: admin
+      password: D4mn4t10nBugg3r4t10n
+
+    motion:
+      mask: 0.841,0.55,0.653,0.635,0.687,1,0.91,1
+  garden: # <------ Name the camera
+    enabled: true
+    ffmpeg:
+   #   hwaccel_args: preset-vaapi
+      inputs:
+        - path: rtsp://admin:Bugg3r4t10n@10.0.0.83:8554/Streaming/Channels/101 #(2304x1296) <----- The stream you want to use for detection
+          roles:
+            - detect
+            - record
+    detect:
+      enabled: true # <---- disable detection until you have a working camera feed 
+      width: 1280
+      height: 720
+    onvif:
+      host: 10.0.0.83
+      port: 8000
+      user: admin
+      password: Bugg3r4t10n
+
+    motion:
+      mask: 0,0.752,0,1,1,1,1,0.619
+version: 0.14
+camera_groups:
+  all:
+    order: 3
+    icon: LuActivity
+    cameras:
+      - Kitchen
+      - front_of_house
+      - garden
