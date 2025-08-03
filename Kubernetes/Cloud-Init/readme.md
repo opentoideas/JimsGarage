@@ -26,7 +26,7 @@ qm disk resize 5000 scsi0 10G
 ```bash
 qm create 4000 --memory 2048 --core 2 --name ubuntu-cloud --net0 virtio,bridge=vmbr0
 cd /var/lib/vz/template/iso/
-qm importdisk 4000 noble-server-cloudimg-amd64.img   local-zfs
+qm importdisk 4000 jammy-server-cloudimg-amd64.img   local-zfs
 qm set 4000 --scsihw virtio-scsi-pci --scsi0 local-zfs:vm-4000-disk-0
 qm set 4000 --ide2 local-zfs:cloudinit
 qm set 4000 --boot c --bootdisk scsi0
