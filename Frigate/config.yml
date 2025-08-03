@@ -19,14 +19,6 @@ record:
   retain:
     days: 28
     mode: all
-  events:
-    pre_capture: 5
-    post_capture: 5
-    retain:
-      default: 30
-      mode: active_objects
-    objects:
-      - person
 
 snapshots:
   enabled: false
@@ -119,12 +111,3 @@ cameras:
 
     motion:
       mask: 0,0.752,0,1,1,1,1,0.619
-version: 0.14
-camera_groups:
-  all:
-    order: 3
-    icon: LuActivity
-    cameras:
-      - Kitchen
-      - front_of_house
-      - garden
