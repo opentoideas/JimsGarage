@@ -14,9 +14,9 @@ services:
 
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /home/David/TRUENAS/surveilance/frigate/config.yml:/config/config.yml
-      - /home/David/TRUENAS/surveilance/Frigate/media/clips:/media/frigate/clips
-      - /home/David/TRUENAS/surveilance/Frigate/media/recordings:/media/frigate/recordings
+      - /home/David/truenas/surveilance/frigate/config.yml:/config/config.yml
+      - /home/David/truenas/surveilance/Frigate/media/clips:/media/frigate/clips
+      - /home/David/truenas/surveilance/Frigate/media/recordings:/media/frigate/recordings
       - /home/David/docker/frigate/database:/media/frigate
       
     ports:
