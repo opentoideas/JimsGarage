@@ -5,9 +5,9 @@
 ```bash
 qm create 5000 --memory 2048 --core 2 --name ubuntu-cloud --net0 virtio,bridge=vmbr0
 cd /var/lib/vz/template/iso/
-qm importdisk 5000 noble-server-cloudimg-amd64.img   local
-qm set 5000 --scsihw virtio-scsi-pci --scsi0 local:vm-5000-disk-0
-qm set 5000 --ide2 local:cloudinit
+qm importdisk 5000 noble-server-cloudimg-amd64.img   local-lvm
+qm set 5000 --scsihw virtio-scsi-pci --scsi0 local-lvm:vm-5000-disk-0
+qm set 5000 --ide2 local-lvm:cloudinit
 qm set 5000 --boot c --bootdisk scsi0
 qm set 5000 --serial0 socket --vga serial0
 ```
